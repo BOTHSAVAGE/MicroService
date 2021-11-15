@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 public class ApplicationContextConfig {
 
     @Bean
-    @LoadBalanced
+    // @LoadBalanced 手写轮训算法就不用他自己的
     public RestTemplate getRestTemplate(){
         return new RestTemplate();
     }

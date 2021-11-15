@@ -1,6 +1,5 @@
 package com.atguigu.springcloud.controller;
 
-import com.atguigu.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
@@ -16,8 +15,7 @@ import java.util.List;
 @Slf4j
 public class PaymentController {
 
-    @Resource
-    private PaymentService paymentService;
+
 
     @Value("${server.port}")
     private String serverPort;
@@ -27,7 +25,7 @@ public class PaymentController {
 
     @PostMapping(value = "/payment/create")
     public CommonResult create(@RequestBody Payment payment) {
-        int result = paymentService.create(payment);
+        int result = 1;
         log.info("插入结果:" + result);
         if (result > 0) {
             return new CommonResult(200, "插入成功,serverPort: " + serverPort, result);
@@ -38,7 +36,7 @@ public class PaymentController {
 
     @GetMapping(value = "/payment/get/{id}")
     public CommonResult getPaymentById(@PathVariable("id") Long id) {
-        Payment paymentById = paymentService.getPaymentById(id);
+        Payment paymentById = new Payment();
         log.info("查询结果:" + paymentById);
         if (paymentById != null) {
             return new CommonResult(200, "查询成功,serverPort: "+ serverPort, paymentById);
@@ -58,6 +56,13 @@ public class PaymentController {
             log.info(instance.getServiceId()+"\t"+instance.getHost()+"\t"+instance.getPort()+"\t"+instance.getUri());
         }
         return this.discoveryClient;
+    }
+
+
+    @GetMapping(value = "/paymnet/lb")
+    public String getPaymentLB(){
+
+        return serverPort;
     }
 //
 //    @GetMapping(value = "/payment/lb")
