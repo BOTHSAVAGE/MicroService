@@ -10,6 +10,8 @@ import springcloud.entities.Payment;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @Slf4j
@@ -35,8 +37,13 @@ public class PaymentController {
     }
 
     @GetMapping(value = "/payment/get/{id}")
-    public CommonResult getPaymentById(@PathVariable("id") Long id) {
+    public CommonResult getPaymentById(@PathVariable("id") Long id) throws InterruptedException {
         Payment paymentById = new Payment();
+        paymentById.setId(id);
+        paymentById.setSerial(UUID.randomUUID().toString().replace('-',' '));
+
+        TimeUnit.SECONDS.sleep(3);
+
         log.info("查询结果:" + paymentById);
         if (paymentById != null) {
             return new CommonResult(200, "查询成功,serverPort: "+ serverPort, paymentById);
