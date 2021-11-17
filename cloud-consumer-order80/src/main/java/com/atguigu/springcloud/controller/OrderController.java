@@ -3,12 +3,10 @@ package com.atguigu.springcloud.controller;
 import com.atguigu.springcloud.lb.LoadBalancer;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import springcloud.entities.CommonResult;
-import springcloud.entities.Payment;
+import com.atguigu.springcloud.entities.CommonResult;
+import com.atguigu.springcloud.entities.Payment;
 
 import javax.annotation.Resource;
 import java.net.URI;

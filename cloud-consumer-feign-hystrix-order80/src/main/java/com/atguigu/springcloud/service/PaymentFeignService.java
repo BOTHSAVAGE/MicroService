@@ -4,8 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import com.atguigu.springcloud.entities.CommonResult;
-import com.atguigu.springcloud.entities.Payment;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author y
@@ -13,10 +12,14 @@ import com.atguigu.springcloud.entities.Payment;
  */
 
 @Component
-@FeignClient(value = "CLOUD-PAYMENT-SERVICE")
+@FeignClient(value = "cloud-provider-hystrix-payment")
 public interface PaymentFeignService {
 
-    @GetMapping(value = "/payment/get/{id}")
-    CommonResult getPaymentById(@PathVariable("id") Long id);
+    @RequestMapping("/payment/hystrix/ok/{id}")
+    String paymentInfo_ok(@PathVariable("id") Integer id);
+
+
+    @RequestMapping("/payment/hystrix/timeout/{id}")
+    String paymentInfo_timeout(@PathVariable("id") Integer id);
 
 }

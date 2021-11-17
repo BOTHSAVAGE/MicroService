@@ -3,7 +3,7 @@ package com.atguigu.springcloud.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import springcloud.entities.CommonResult;
+import com.atguigu.springcloud.entities.CommonResult;
 
 import javax.annotation.Resource;
 
