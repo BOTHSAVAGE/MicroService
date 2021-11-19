@@ -1,0 +1,29 @@
+server:
+  port: 3355
+
+spring:
+  application:
+    name: consumer
+  cloud:
+    config:
+      label: master #分支名称
+      name: config #配置文件名称
+      profile: dev #读取后缀名称   综上所述master分支config-dev.yml的配置文件
+      uri: http://localhost:3344
+
+
+eureka:
+  client:
+    register-with-eureka: true   #是否将自己注册到注册中心,集群必须设置为true配合ribbon
+    fetch-registry: true    #是否从服务端抓取已有的注册信息
+    service-url:
+      defaultZone: http://eureka7002.com:7002/eureka,http://eureka7001.com:7001/eureka #,http://eureka7002.com:7002/eureka
+
+
+
+#暴露监控端点
+management:
+  endpoint:
+    web:
+      exposure:
+        include: "*"
