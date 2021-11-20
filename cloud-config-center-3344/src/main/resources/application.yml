@@ -21,3 +21,11 @@ eureka:
       defaultZone: http://eureka7001.com:7001/eureka #单机
 
 
+
+
+management:
+  endpoint:
+    web:
+      exposure:
+        include: 'bus-refresh'
+
