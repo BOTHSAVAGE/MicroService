@@ -2,6 +2,9 @@
 
 
 
+> tips: 在根pom中的modules只留取一个项目从而避免其他项目被maven管理
+
+
 ### 基础学习
 
 > 《cloud2020》
